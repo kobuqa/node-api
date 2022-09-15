@@ -15,9 +15,9 @@
  *                     type: object
  *                     properties:
  *                       id:
- *                         type: integer
+ *                         type: uuid
  *                         description: The product ID.
- *                         example: 1
+ *                         example: uuid
  *                       brand:
  *                         type: string
  *                         description: The product's brand.
@@ -26,9 +26,19 @@
  *                         type: string
  *                         description: The product's model.
  *                         example: SL3
+ *                       price:
+ *                         type: integer
+ *                         description: The product's price.
+ *                         example: 500
  *   post:
  *     summary: Create a new product
- *     description: Retrieve all list of products
+ *     description: Retrieve all list of products.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Product'
  *     responses:
  *       200:
  *         description: A list of products.
@@ -51,6 +61,10 @@
  *                         type: string
  *                         description: The product's model.
  *                         example: SL3
+ *                       price:
+ *                         type: integer
+ *                         description: The product's price.
+ *                         example: 100
  */
 
 /**
@@ -72,12 +86,18 @@
  *           type: string
  *           description: The product's model.
  *           example: SL3
+ *         price:
+ *           type: integer
+ *           description: The product's price.
+ *           example: 500
  */
 const express = require('express');
+
 const router = express.Router()
 const productsController = require('../controllers/products')
 
 router.get('/products', productsController.getProducts)
+router.get('/products/:id', productsController.getProduct)
 router.post('/products', productsController.postProduct)
 
 module.exports = router;

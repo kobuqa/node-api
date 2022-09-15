@@ -12,13 +12,13 @@ module.exports = {
         },
         contact: {
           name: "Kobuqa",
-          url: "https://logrocket.com",
+          url: "https://t.me/cons1st3ncy",
           email: "kobuqa@gmail.com",
         },
       },
       servers: [
         {
-          url: "http://localhost:8080",
+          url: `http://localhost:${process.env.PORT}`,
         },
       ],
     },

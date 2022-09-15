@@ -18,7 +18,7 @@ const Product = sequilize.define('product', {
         allowNull: false
     },
     price: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.INTEGER,
         allowNull: false
     }
 })

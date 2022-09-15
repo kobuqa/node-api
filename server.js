@@ -5,9 +5,10 @@ const swaggerJsdoc = require("swagger-jsdoc")
 const swaggerUi = require("swagger-ui-express")
 const sequilize = require('./util/database')
 
-require('dotenv').config({ path: '.env.' + process.env.NODE_ENV })
-const port = 8080
+require('dotenv').config({ path: process.env.NODE_ENV ? '.env.' + process.env.NODE_ENV : '.env' })
+
 const productsRoutes = require('./routes/products')
+
 const app = express();
 
 app.use(cors())
@@ -17,13 +18,13 @@ app.use(express.static("public"))
 
 app.use(productsRoutes)
 
-app.get('/', (req, res) => res.send('<h1> Welcome </h1>'))
+app.get('/', (_, res) => res.redirect('/api'))
 
 const specs = swaggerJsdoc(require('./swagger/options'));
 
 app.use("/api", swaggerUi.serve, swaggerUi.setup(specs));
 
 sequilize.sync().then(() => {
-    app.listen(port, () => console.log(`Server has been started on port ${port}🚀`))
+    app.listen(3000, () => console.log(`Server has been started on port ${3000}🚀`))
 }).catch(error => console.log(error))
 
