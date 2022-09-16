@@ -25,6 +25,6 @@ const specs = swaggerJsdoc(require('./swagger/options'));
 app.use("/api", swaggerUi.serve, swaggerUi.setup(specs));
 
 sequilize.sync().then(() => {
-    app.listen(3000, () => console.log(`Server has been started on port ${3000}🚀`))
+    app.listen(80, () => console.log(`Server has been started on port ${80}🚀`))
 }).catch(error => console.log(error))
 
