@@ -2,8 +2,7 @@ const Sequelize = require('sequelize')
 
 const sequelize = new Sequelize('root', 'root', 'root', {
     dialect: 'postgres',
-    port: 5432,
-    host: process.env.DB_HOST,
+    host: 'postgres',
     pool: {
         max: 100,
         min: 0,
